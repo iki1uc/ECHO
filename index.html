@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>IS – Interstellar Signal · iki1uc</title>
+<title>ECHO – Rücksignal · iki1uc</title>
 
 <style>
 body { background:#000; color:#0f0; font-family:monospace; padding:40px; }
@@ -12,33 +12,70 @@ pre { background:#000; border-left:3px solid #6cf; padding:15px; white-space:pre
 </style>
 
 <script type="module">
+
+/* 1 — ECHO CORE */
+import { ECHO_CORE } from "./CR.js";
+
+/* 2 — IS CORE */
+import { IS_CORE } from "./HO.js";
+
+/* 3 — ID_ECHO mathematisch */
+import { ID_ECHO } from "./EC.js";
+
+/* 4 — ECHO Dashboard */
+import { ECHO_DASHBOARD } from "./DSY.js";
+
+/* 5 — IS Dashboard */
+import { IS_DASHBOARD } from "./ISdash.js";
+
+/* iki1uc CORE */
 import { HUB_CORE } from "../HUB/HUB.core.js";
 import { NC_QUANTUM } from "../NC/NC_Quantum.js";
 import { PQ_HYPER } from "../PQ/PQ_Hyper.js";
 import { TMP_GHOST } from "../TMP/TMP_Ghost.js";
 
-import { ION_CORE } from "../ION/ion.core.js";
-import { MIA_FUSION } from "../MIA/mia.core.js";
-import { ECHO_CORE } from "../ECHO/EC.js";
-
-import { IS_CORE } from "./IS.core.js";
-import { IS_DASHBOARD } from "./IS.dashboard.js";
-
 (async function(){
 
+    /* CORE INIT */
     const nc = NC_QUANTUM();
     const pq = PQ_HYPER(nc);
     const tmp = TMP_GHOST(pq);
 
     const hub = HUB_CORE(nc, pq, tmp);
-    const ion = ION_CORE(hub);
-    const mia = MIA_FUSION(hub, ion);
+
+    /* ION + MIA + ECHO */
+    const ionPulse = hub.pulse;
+    const ionWarp  = hub.pulse ** 1.3;
+    const ionCharge = hub.pulse * hub.pulse;
+    const ionCurv = Math.log(hub.pulse + 1) * 42;
+
+    const ion = {
+        pulse: ionPulse,
+        warp: ionWarp,
+        charge: ionCharge,
+        curvature: ionCurv,
+        state: ionPulse > 400 ? "overdrive" : "soft"
+    };
+
     const echo = ECHO_CORE(ion);
+    const echoDash = ECHO_DASHBOARD(echo);
 
+    /* IS */
     const is = IS_CORE(echo);
+    const isDash = IS_DASHBOARD(is);
 
-    document.getElementById("is").innerText =
-        JSON.stringify(IS_DASHBOARD(is), null, 2);
+    /* ID_ECHO mathematisch */
+    const idEcho = ID_ECHO(ionPulse, ionWarp, ionCharge);
+
+    /* OUTPUT */
+    document.getElementById("echo-core").innerText =
+        JSON.stringify(echoDash, null, 2);
+
+    document.getElementById("is-core").innerText =
+        JSON.stringify(isDash, null, 2);
+
+    document.getElementById("echo-id").innerText =
+        JSON.stringify(idEcho, null, 2);
 
 })();
 </script>
@@ -47,11 +84,24 @@ import { IS_DASHBOARD } from "./IS.dashboard.js";
 
 <body>
 
-<h1>IS – Interstellar Signal · iki1uc</h1>
+<h1>ECHO – Rücksignal · iki1uc</h1>
 
+<!-- 6 — ECHO Rücksignal -->
 <div class="block">
-    <div class="title">IS‑Signal</div>
-    <pre id="is"></pre>
+    <div class="title">ECHO – Rücksignal</div>
+    <pre id="echo-core"></pre>
+</div>
+
+<!-- 7 — IS Interstellar Signal -->
+<div class="block">
+    <div class="title">IS – Interstellar Signal</div>
+    <pre id="is-core"></pre>
+</div>
+
+<!-- 8 — ID_ECHO mathematische Identität -->
+<div class="block">
+    <div class="title">ID_ECHO – mathematische Identität</div>
+    <pre id="echo-id"></pre>
 </div>
 
 </body>
