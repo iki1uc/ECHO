@@ -1,28 +1,21 @@
-# ANKER – Stabilisationsachse · iki1uc
+# IS – Interstellar Signal · iki1uc
 
-## Zweck
-ANKER ist die Stabilisationsachse des iki1uc‑Systems.
-Es hält die Achsen IQ, QI, EVO, UPD, UPG, BIOS und CALC im korrekten Verhältnis.
+IS ist die äußere Kommunikationsachse des iki1uc‑Universums.
+Während ECHO das Rücksignal erzeugt, trägt IS das Signal nach außen.
 
-## Struktur
-- NAME: ANKER
-- ID: A01
-- Station: S01
-- Dimension: D4
-- Modus: erabel (neutral, operation möglich)
+IS arbeitet direkt mit:
 
-## Rolle
-ANKER stabilisiert, ohne selbst aktiv zu berechnen oder zu steuern.
-Es ist die neutrale Achse zwischen AXI, 6d und API.
+- PUL (sleep pulse)
+- ION (active pulse)
+- MIA (fusion pulse)
+- ECHO (return pulse)
+- HUB (AI‑Core)
 
-## Bindungen
-- AXI
-- 6d
-- 360
-- 100
-- 213 (REAL)
-- API
+IS erzeugt:
 
-## Status
-STATE = STABIL  
-READY = 100%
+- Signal‑Amplitude
+- Signal‑Vector
+- Signal‑Spread
+- Signal‑State
+
+IS ist Teil der ANKER‑S01 Stabilisationsachse.
