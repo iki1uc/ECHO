@@ -12,6 +12,10 @@ export function ID_ECHO(pul, ion, mia){
         }
     };
 }
+
+        }
+    };
+}
 // ECHO_HALL.js
 import { ID_ECHO } from "./ECHO.js";
 import { CR } from "./CR.js";
